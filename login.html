@@ -15,9 +15,11 @@
         <form action="" class="flex flex-col justify-center ">
             <label for="usuario" class="text-gray-500 mb-3">Usuário:</label>
             <input type="text" name="usuario" id="usuario" class="bg-zinc-900 border border-zinc-800 rounded-lg text-zinc-100 placeholder-zinc-600 focus:ring-blue-500 h-12 px-4 py-3 mb-3 md:w-100" placeholder="Digite seu usuario" required >
+            <small id="erroUsuario"></small>
 
             <label for="senha" class="text-gray-500 mb-3">Senha:</label>
             <input type="password" name="senha" id="senha" class="bg-zinc-900 border border-zinc-800 rounded-lg text-zinc-100 placeholder-zinc-600 focus:ring-blue-500 h-12 px-4 py-3 mb-3 md:w-100" placeholder="Digite sua senha" required>
+            <small id="erroSenha"></small>
         </form>
         <button type="button" class="bg-blue-500 text-white w-full rounded h-10 mb-3 md:max-w-100">Entrar</button>
         <hr class="border-gray-500 md:w-90">
