@@ -4,23 +4,71 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <title>Ur Planner</title>
 </head>
-<body class="min-h-screen flex justify-center items-center bg-[#0B0F1A]/96">
-    <section id="login-section" class="flex flex-col gap-2 w-full mx-3 my-1">
-        <img src="./img/logo.png" alt="">
-        <p class="text-white text-center">Bem-vindo ao Ur Planner</p>
-        <p class="text-gray-500 text-center">Faça login para acessar seu planner</p>
-        <form action="" class="flex flex-col justify-center">
-            <label for="usuario" class="text-gray-500 mb-3">Usuário:</label>
-            <input type="text" name="usuario" id="usuario" class="bg-zinc-900 border border-zinc-800 rounded-lg text-zinc-100 placeholder-zinc-600 focus:ring-blue-500 h-12 px-4 py-3 mb-3" placeholder="Digite seu usuario" required >
+<body class="flex justify-center items-center bg-[#0B0F1A]/96 font-[Inter]">
+    <section id="planner-semanal" class="text-white">
+        <div class="my-5">
+            <img src="./img/logo.png" alt="" class="w-96">
+            <div class="text-center">
+                <h1 class="text-2xl">Planner Semanal</h1>
+                <p class="text-gray-500">Organize suas tarefas da semana</p>
+            </div>
+        </div>
+        <hr class="w-96 border-gray-500">
 
-            <label for="senha" class="text-gray-500 mb-3">Senha:</label>
-            <input type="password" name="senha" id="senha" class="bg-zinc-900 border border-zinc-800 rounded-lg text-zinc-100 placeholder-zinc-600 focus:ring-blue-500 h-12 px-4 py-3 mb-3" placeholder="Digite sua senha" required>
-        </form>
-        <button type="button" class="bg-blue-500 text-white w-full rounded h-10 mb-3">Entrar</button>
-        <hr class="border-gray-500">
-        <button type="button" class="border border-zinc-800 rounded-lg text-white w-full h-10 mt-3"><a href="cadastro.html">Realizar cadastro</a></button>
+        <div class="my-4">
+            <div class="bg-zinc-900 border border-zinc-800 px-4 py-3 rounded-lg mb-4">
+                <p class="m-2">Segunda-feira</p>
+                <hr class="border-gray-500">
+                <p id="tarefas" class="px-4 py-3">Tarefa 1</p>
+                <textarea id="task" name="task" rows="4" cols="50" placeholder="Escreva a sua tarefa" class="hidden"></textarea>
+                <button id="btn-add-task" class="bg-zinc-900 border border-zinc-800 rounded-lg text-zinc-100 placeholder-zinc-600 focus:ring-blue-500 h-12 px-4 py-3 mb-3 w-full">+ Adicionar tarefa</button>
+            </div>
+            <div class="bg-zinc-900 border border-zinc-800 px-4 py-3 rounded-lg mb-4">
+                <p class="m-2">Terça-feira</p>
+                <hr class="border-gray-500">
+                <p id="tarefas" class="px-4 py-3">Tarefa 1</p>
+                <textarea id="task" name="task" rows="4" cols="50" placeholder="Escreva a sua tarefa" class="hidden"></textarea>
+                <button id="btn-add-task" class="bg-zinc-900 border border-zinc-800 rounded-lg text-zinc-100 placeholder-zinc-600 focus:ring-blue-500 h-12 px-4 py-3 mb-3 w-full">+ Adicionar tarefa</button>
+            </div>
+            <div class="bg-zinc-900 border border-zinc-800 px-4 py-3 rounded-lg mb-4">
+                <p class="m-2">Quarta-feira</p>
+                <hr class="border-gray-500">
+                <p id="tarefas" class="px-4 py-3">Tarefa 1</p>
+                <textarea id="task" name="task" rows="4" cols="50" placeholder="Escreva a sua tarefa" class="hidden"></textarea>
+                <button id="btn-add-task" class="bg-zinc-900 border border-zinc-800 rounded-lg text-zinc-100 placeholder-zinc-600 focus:ring-blue-500 h-12 px-4 py-3 mb-3 w-full">+ Adicionar tarefa</button>
+            </div>
+            <div class="bg-zinc-900 border border-zinc-800 px-4 py-3 rounded-lg mb-4">
+                <p class="m-2">Quinta-feira</p>
+                <hr class="border-gray-500">
+                <p id="tarefas" class="px-4 py-3">Tarefa 1</p>
+                <textarea id="task" name="task" rows="4" cols="50" placeholder="Escreva a sua tarefa" class="hidden"></textarea>
+                <button id="btn-add-task" class="bg-zinc-900 border border-zinc-800 rounded-lg text-zinc-100 placeholder-zinc-600 focus:ring-blue-500 h-12 px-4 py-3 mb-3 w-full">+ Adicionar tarefa</button>
+            </div>
+            <div class="bg-zinc-900 border border-zinc-800 px-4 py-3 rounded-lg mb-4">
+                <p class="m-2">Sexta-feira</p>
+                <hr class="border-gray-500">
+                <p id="tarefas" class="px-4 py-3">Tarefa 1</p>
+                <textarea id="task" name="task" rows="4" cols="50" placeholder="Escreva a sua tarefa" class="hidden"></textarea>
+                <button id="btn-add-task" class="bg-zinc-900 border border-zinc-800 rounded-lg text-zinc-100 placeholder-zinc-600 focus:ring-blue-500 h-12 px-4 py-3 mb-3 w-full">+ Adicionar tarefa</button>
+            </div>
+            <div class="bg-zinc-900 border border-zinc-800 px-4 py-3 rounded-lg mb-4">
+                <p class="m-2">Sábado</p>
+                <hr class="border-gray-500">
+                <p id="tarefas" class="px-4 py-3">Tarefa 1</p>
+                <textarea id="task" name="task" rows="4" cols="50" placeholder="Escreva a sua tarefa" class="hidden"></textarea>
+                <button id="btn-add-task" class="bg-zinc-900 border border-zinc-800 rounded-lg text-zinc-100 placeholder-zinc-600 focus:ring-blue-500 h-12 px-4 py-3 mb-3 w-full">+ Adicionar tarefa</button>
+            </div>
+            <div class="bg-zinc-900 border border-zinc-800 px-4 py-3 rounded-lg mb-4">
+                <p class="m-2">Domingo</p>
+                <hr class="border-gray-500">
+                <p id="tarefas" class="px-4 py-3">Tarefa 1</p>
+                <textarea id="task" name="task" rows="4" cols="50" placeholder="Escreva a sua tarefa" class="hidden"></textarea>
+                <button id="btn-add-task" class="bg-zinc-900 border border-zinc-800 rounded-lg text-zinc-100 placeholder-zinc-600 focus:ring-blue-500 h-12 px-4 py-3 mb-3 w-full">+ Adicionar tarefa</button>
+            </div>
+        </div>
     </section>
 </body>
 </html>
