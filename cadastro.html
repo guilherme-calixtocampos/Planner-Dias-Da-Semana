@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <title>Ur Planner</title>
+</head>
+<body class="flex justify-center items-center bg-[#0B0F1A]/96">
+    <section id="login-section" class="flex flex-col gap-2 w-full mx-3 my-15">
+        <img src="./img/logo.png" alt="">
+        <p class="text-white text-center">Bem-vindo ao Ur Planner</p>
+        <p class="text-gray-500 text-center">Estamos felizes que você esteja se cadastrando em nosso site</p>
+        <form action="" class="flex flex-col justify-center">
+            <label for="usuario" class="text-gray-500 mb-3">Usuário:</label>
+            <input type="text" name="usuario" id="usuario" class="bg-zinc-900 border border-zinc-800 rounded-lg text-zinc-100 placeholder-zinc-600 focus:ring-blue-500 h-12 px-4 py-3 mb-3" placeholder="Digite seu usuario" required >
+
+            <label for="senha" class="text-gray-500 mb-3">Senha:</label>
+            <input type="password" name="senha" id="senha" class="bg-zinc-900 border border-zinc-800 rounded-lg text-zinc-100 placeholder-zinc-600 focus:ring-blue-500 h-12 px-4 py-3 mb-3" placeholder="Digite sua senha" required>
+
+            <label for="senha" class="text-gray-500 mb-3">Confirme a senha:</label>
+            <input type="password" name="senha" id="senha" class="bg-zinc-900 border border-zinc-800 rounded-lg text-zinc-100 placeholder-zinc-600 focus:ring-blue-500 h-12 px-4 py-3 mb-5" placeholder="Digite sua senha" required>
+        </form>
+        <button type="button" class="bg-blue-500 text-white w-full rounded h-10">Cadastrar-se</button>
+    </section>
+</body>
+</html>
