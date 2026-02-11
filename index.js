@@ -42,9 +42,12 @@ botoesAdd.forEach(botao => {
             tarefas[dia].push(tarefa)
 
             localStorage.setItem("tarefas", JSON.stringify(tarefas))
+            
             textarea.value = ''
             textarea.classList.add('hidden')
             btnSave.classList.add('hidden')
+
+            carregarTarefas()
         }
 
         
