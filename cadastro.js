@@ -8,7 +8,7 @@ const avisoSenha = document.querySelector('#avisoSenha')
 const avisoConfirmaSenha = document.querySelector('#avisoConfirmaSenha')
 
 
-function atualizaLogin() {
+function atualizaCadastros() {
     localStorage.setItem('login', JSON.stringify(login))
 }
 
@@ -72,8 +72,7 @@ function cadastra(usuarioDigitado, senhaDigitada) { //function cadastra
         usuario: usuarioDigitado,
         senha: senhaDigitada
     })
-
-    atualizaLogin() //salva no localstorage
+    atualizaCadastros() //salva no localstorage
 
     window.location.href = 'index.html' //manda pro index
 }
