@@ -20,7 +20,8 @@ botoesAdd.forEach(botao => {
         const msg = card.querySelector('.msg-vazia')
 
         const dia = card.dataset.dia
-        console.log('Dia clicado:', dia)
+        console.log('Dia:', dia)
+        console.log('Existe?', tarefas[dia])
 
         textarea.classList.toggle('hidden')
         btnSave.classList.toggle('hidden')
