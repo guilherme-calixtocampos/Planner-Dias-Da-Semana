@@ -59,6 +59,7 @@ function removerTarefa(dia, index) {
     carregarTarefas()
 }
 
+
 /* =========================
    EVENTO ADICIONAR
 ========================= */
@@ -108,6 +109,13 @@ function carregarTarefas() {
         const dia = card.dataset.dia
         const ul = card.querySelector('.lista-tarefas')
         const msg = card.querySelector('.msg-vazia')
+        
+        const contador = card.querySelector('.tamanho-tarefas')
+        contador.textContent = tarefas[dia].length === 1
+        ? '1 tarefa'
+        : `${tarefas[dia].length} tarefas`
+
+
 
         ul.innerHTML = ''
 
@@ -170,6 +178,7 @@ function carregarTarefas() {
             div.appendChild(imgRemove)
 
             ul.appendChild(li)
+            
         })
     })
 }
@@ -179,3 +188,4 @@ function carregarTarefas() {
 ========================= */
 
 carregarTarefas()
+
