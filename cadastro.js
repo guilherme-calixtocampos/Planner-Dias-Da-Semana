@@ -7,6 +7,7 @@ const avisoUsuario = document.querySelector('#avisoUsuario')
 const avisoSenha = document.querySelector('#avisoSenha')
 const avisoConfirmaSenha = document.querySelector('#avisoConfirmaSenha')
 
+
 function atualizaCadastros() {
     localStorage.setItem('login', JSON.stringify(login))
 }
@@ -36,12 +37,17 @@ function verificaSenha(senhaDigitada,confirmaSenhaDigitada) { //verifica a senha
     avisoSenha.innerHTML = '' //esvazia o campo 
     avisoConfirmaSenha.innerHTML = '' //esvazia o campo
 
-    if (senhaDigitada.trim() === confirmaSenhaDigitada.trim()) { //ve se as senhas batem
-        return true //se sim, retorna true
+    if (!senhaDigitada || !confirmaSenhaDigitada) {
+        avisoSenha.innerHTML = `Digite uma senha` //se não dá aviso
+        avisoConfirmaSenha.innerHTML = `Digite uma senha`
     } else {
-        avisoSenha.innerHTML = `Senhas divergentes` //se não dá aviso
-        avisoConfirmaSenha.innerHTML = `Senhas divergentes`
-        return false
+            if (senhaDigitada.trim() === confirmaSenhaDigitada.trim()) { //ve se as senhas batem
+                return true //se sim, retorna true
+            } else {
+                avisoSenha.innerHTML = `Senhas divergentes` //se não dá aviso
+                avisoConfirmaSenha.innerHTML = `Senhas divergentes`
+                return false
+        }
     }
 }
 
@@ -66,7 +72,6 @@ function cadastra(usuarioDigitado, senhaDigitada) { //function cadastra
         usuario: usuarioDigitado,
         senha: senhaDigitada
     })
-
     atualizaCadastros() //salva no localstorage
 
     window.location.href = 'index.html' //manda pro index
