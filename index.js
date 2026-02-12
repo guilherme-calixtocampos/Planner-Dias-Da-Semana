@@ -1,5 +1,10 @@
 const botoesAdd = document.querySelectorAll('.btn-add-tarefa')
-let tarefas = JSON.parse(localStorage.getItem("tarefas")) || {
+
+/* =========================
+   MODELO PADRÃO
+========================= */
+
+const modeloPadrao = {
     segunda: [],
     terca: [],
     quarta: [],
@@ -9,6 +14,60 @@ let tarefas = JSON.parse(localStorage.getItem("tarefas")) || {
     domingo: []
 }
 
+/* =========================
+   INICIALIZAÇÃO
+========================= */
+
+let tarefas = JSON.parse(localStorage.getItem("tarefas"))
+
+if (!tarefas || typeof tarefas !== "object") {
+    tarefas = modeloPadrao
+} else {
+    Object.keys(modeloPadrao).forEach(dia => {
+        if (!tarefas[dia]) {
+            tarefas[dia] = []
+        }
+    })
+}
+
+/* =========================
+   SALVAR NO LOCALSTORAGE
+========================= */
+
+function salvarLocalStorage() {
+    localStorage.setItem("tarefas", JSON.stringify(tarefas))
+}
+
+/* =========================
+   EDITAR TAREFA
+========================= */
+
+function editarTarefa(dia, index) {
+
+    const novoTexto = prompt("Editar tarefa:", tarefas[dia][index].texto)
+
+    if (!novoTexto) return
+
+    tarefas[dia][index].texto = novoTexto
+    salvarLocalStorage()
+    carregarTarefas()
+}
+
+/* =========================
+   REMOVER TAREFA
+========================= */
+
+function removerTarefa(dia, index) {
+    tarefas[dia].splice(index,1)
+    salvarLocalStorage()
+    carregarTarefas()
+}
+
+
+/* =========================
+   EVENTO ADICIONAR
+========================= */
+
 botoesAdd.forEach(botao => {
 
     botao.addEventListener('click', () => {
@@ -16,46 +75,36 @@ botoesAdd.forEach(botao => {
         const card = botao.closest('.card-dia')
         const textarea = card.querySelector('.input-tarefa')
         const btnSave = card.querySelector('.btn-save-tarefa')
-        const ul = card.querySelector('.lista-tarefas')
-        const msg = card.querySelector('.msg-vazia')
 
         const dia = card.dataset.dia
-        console.log('Dia:', dia)
-        console.log('Existe?', tarefas[dia])
 
         textarea.classList.toggle('hidden')
         btnSave.classList.toggle('hidden')
 
-        // botão salvar
         btnSave.onclick = () => {
 
-            const tarefa = textarea.value.trim()
-            if (!tarefa) return
+            const texto = textarea.value.trim()
+            if (!texto) return
 
-            const li = document.createElement('li')
-            li.textContent = tarefa
-            li.classList.add('text-gray-400', 'text-sm')
+            tarefas[dia].push({
+                texto: texto,
+                status: false //====================================================================
+            })
 
-            ul.appendChild(li)
+            salvarLocalStorage()
+            carregarTarefas()
 
-            
-
-            tarefas[dia].push(tarefa)
-
-            localStorage.setItem("tarefas", JSON.stringify(tarefas))
-            
             textarea.value = ''
             textarea.classList.add('hidden')
             btnSave.classList.add('hidden')
-
-            carregarTarefas()
         }
-
-        
-
     })
-
 })
+
+/* =========================
+   RENDERIZAR TAREFAS
+========================= */
+
 function carregarTarefas() {
 
     const cards = document.querySelectorAll('.card-dia')
@@ -65,24 +114,106 @@ function carregarTarefas() {
         const dia = card.dataset.dia
         const ul = card.querySelector('.lista-tarefas')
         const msg = card.querySelector('.msg-vazia')
+        
+        const contador = card.querySelector('.tamanho-tarefas')
+        contador.textContent = tarefas[dia].length === 1
+        ? '1 tarefa'
+        : `${tarefas[dia].length} tarefas`
 
         ul.innerHTML = ''
 
-        if (tarefas[dia].length === 0) {
+        if (!tarefas[dia] || tarefas[dia].length === 0) {
             msg.classList.remove('hidden')
-        } else {
-            msg.classList.add('hidden')
-
-            tarefas[dia].forEach(tarefa => {
-                const li = document.createElement('li')
-                li.textContent = tarefa
-                li.classList.add('text-gray-400', 'text-sm')
-                ul.appendChild(li)
-            })
+            return
         }
 
+        msg.classList.add('hidden')
+
+        tarefas[dia].forEach((tarefaObj, index) => {
+
+            const li = document.createElement('li')
+            li.classList.add(
+                'text-gray-400',
+                'text-lg',
+                'flex',
+                'justify-between',
+                'items-center'
+            )
+
+            const span = document.createElement('span')
+            span.textContent = tarefaObj.texto
+
+            const div = document.createElement('div')
+            div.classList.add(
+                'flex',
+                'gap-3'
+            )
+
+            const check = document.createElement('input')
+            check.type = 'checkbox'
+            check.classList.add(
+                'w-6',
+                'h-6',
+                'cursor-pointer',
+                'hover:opacity-70'
+            )
+
+            check.addEventListener('change', () => {
+
+                tarefas[dia][index].status = check.checked
+                salvarLocalStorage()
+
+                if (check.checked) {
+                    span.classList.add('line-through', 'opacity-60')
+                } else {
+                    span.classList.remove('line-through', 'opacity-60')
+                }
+            })
+
+
+
+
+            const imgEdit = document.createElement('img')
+            imgEdit.src = './img/pencil.png'
+            imgEdit.classList.add(
+                'w-6',
+                'h-6',
+                'cursor-pointer',
+                'hover:opacity-70'
+            )
+
+            imgEdit.addEventListener('click', () => {
+                editarTarefa(dia, index)
+            })
+
+            const imgRemove = document.createElement('img')
+            imgRemove.src = './img/remove.png'
+            imgRemove.classList.add(
+                'w-6',
+                'h-6',
+                'cursor-pointer',
+                'hover:opacity-70'
+            )
+
+            imgRemove.addEventListener('click', () => {
+                removerTarefa(dia, index)
+            })
+
+            li.appendChild(span)
+            li.appendChild(div)
+            div.appendChild(check)
+            div.appendChild(imgEdit)
+            div.appendChild(imgRemove)
+
+            ul.appendChild(li)
+            
+        })
     })
 }
+
+/* =========================
+   INICIAR SISTEMA
+========================= */
 
 carregarTarefas()
 
