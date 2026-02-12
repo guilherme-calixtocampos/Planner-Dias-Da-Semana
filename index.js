@@ -9,6 +9,10 @@ let tarefas = JSON.parse(localStorage.getItem("tarefas")) || {
     domingo: []
 }
 
+function carregaTarefas() {
+    localStorage.setItem("tarefas", JSON.stringify(tarefas))
+}
+
 botoesAdd.forEach(botao => {
 
     botao.addEventListener('click', () => {
@@ -42,7 +46,7 @@ botoesAdd.forEach(botao => {
 
             tarefas[dia].push(tarefa)
 
-            localStorage.setItem("tarefas", JSON.stringify(tarefas))
+            carregaTarefas()
             
             textarea.value = ''
             textarea.classList.add('hidden')
