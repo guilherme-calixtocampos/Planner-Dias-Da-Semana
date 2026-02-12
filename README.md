@@ -25,12 +25,17 @@ https://guilherme-calixtocampos.github.io/Planner-Dias-Da-Semana/login.html
 
 ## 🎯 Funcionalidades
 
-- ✅ Adicionar tarefas por dia da semana  
-- ✅ Persistência automática das tarefas no navegador  
-- ✅ Carregamento automático das tarefas ao abrir a página  
-- ✅ Exibição dinâmica da mensagem "Nenhuma tarefa"  
-- ✅ Organização das tarefas por estrutura de objeto  
-
+- ✅ Adicionar tarefas por dia da semana
+- ✅ Editar tarefas existentes
+- ✅ Remover tarefas
+- ✅ Marcar tarefas como concluídas
+- ✅ Persistência automática das tarefas no navegador (LocalStorage)
+- ✅ Manutenção do status (concluída / pendente) mesmo após recarregar a página
+- ✅ Contador dinâmico de tarefas por dia
+- ✅ Atualização automática da interface após qualquer modificação
+- ✅ Carregamento automático das tarefas ao abrir a página
+- ✅ Exibição dinâmica da mensagem "Nenhuma tarefa"
+- ✅ Organização das tarefas utilizando estrutura de objeto por dia da semana
 ---
 
 ## 🧠 Estrutura de Dados
@@ -39,7 +44,10 @@ As tarefas são armazenadas no `localStorage` com a seguinte estrutura:
 
 ```json
 {
-  "segunda": [],
+  "segunda": [
+    { "texto": "Estudar JavaScript", "status": true },
+    { "texto": "Treinar", "status": false }
+  ],
   "terca": [],
   "quarta": [],
   "quinta": [],
@@ -47,3 +55,4 @@ As tarefas são armazenadas no `localStorage` com a seguinte estrutura:
   "sabado": [],
   "domingo": []
 }
+
