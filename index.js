@@ -143,20 +143,20 @@ function carregarTarefas() {
             const span = document.createElement('span')
             span.textContent = tarefaObj.texto
 
-            const div = document.createElement('div')
-            div.classList.add(
-                'flex',
-                'gap-3'
-            )
+            if (tarefaObj.status) {
+                span.classList.add('line-through', 'opacity-60')
+            }
 
             const check = document.createElement('input')
             check.type = 'checkbox'
+            check.checked = tarefaObj.status || false
             check.classList.add(
                 'w-6',
                 'h-6',
                 'cursor-pointer',
                 'hover:opacity-70'
             )
+
 
             check.addEventListener('change', () => {
 
@@ -170,7 +170,11 @@ function carregarTarefas() {
                 }
             })
 
-
+            const div = document.createElement('div')
+                        div.classList.add(
+                            'flex',
+                            'gap-3'
+                        )
 
 
             const imgEdit = document.createElement('img')
