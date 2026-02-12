@@ -7,6 +7,10 @@ const avisoUsuario = document.querySelector('#avisoUsuario')
 const avisoSenha = document.querySelector('#avisoSenha')
 const avisoConfirmaSenha = document.querySelector('#avisoConfirmaSenha')
 
+function atualizaCadastros() {
+    localStorage.setItem('login', JSON.stringify(login))
+}
+
 let login = JSON.parse(localStorage.getItem('login')) //verifica se já tem login no localstorage, se já tem ele já salva ali
 if (!login) { //se não tiver ele cria o login de admin e cria o localstorage
     login = [{ usuario: 'admin', senha: 'admin' }]
@@ -63,7 +67,7 @@ function cadastra(usuarioDigitado, senhaDigitada) { //function cadastra
         senha: senhaDigitada
     })
 
-    localStorage.setItem('login', JSON.stringify(login)) //salva no localstorage
+    atualizaCadastros() //salva no localstorage
 
     window.location.href = 'index.html' //manda pro index
 }
