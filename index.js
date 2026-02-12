@@ -53,6 +53,10 @@ function editarTarefa(dia, index) {
     carregarTarefas()
 }
 
+/* =========================
+   REMOVER TAREFA
+========================= */
+
 function removerTarefa(dia, index) {
     tarefas[dia].splice(index,1)
     salvarLocalStorage()
@@ -83,7 +87,8 @@ botoesAdd.forEach(botao => {
             if (!texto) return
 
             tarefas[dia].push({
-                texto: texto
+                texto: texto,
+                status: false //====================================================================
             })
 
             salvarLocalStorage()
@@ -115,8 +120,6 @@ function carregarTarefas() {
         ? '1 tarefa'
         : `${tarefas[dia].length} tarefas`
 
-
-
         ul.innerHTML = ''
 
         if (!tarefas[dia] || tarefas[dia].length === 0) {
@@ -146,6 +149,30 @@ function carregarTarefas() {
                 'gap-3'
             )
 
+            const check = document.createElement('input')
+            check.type = 'checkbox'
+            check.classList.add(
+                'w-6',
+                'h-6',
+                'cursor-pointer',
+                'hover:opacity-70'
+            )
+
+            check.addEventListener('change', () => {
+
+                tarefas[dia][index].status = check.checked
+                salvarLocalStorage()
+
+                if (check.checked) {
+                    span.classList.add('line-through', 'opacity-60')
+                } else {
+                    span.classList.remove('line-through', 'opacity-60')
+                }
+            })
+
+
+
+
             const imgEdit = document.createElement('img')
             imgEdit.src = './img/pencil.png'
             imgEdit.classList.add(
@@ -174,6 +201,7 @@ function carregarTarefas() {
 
             li.appendChild(span)
             li.appendChild(div)
+            div.appendChild(check)
             div.appendChild(imgEdit)
             div.appendChild(imgRemove)
 
